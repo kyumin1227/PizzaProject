@@ -1,5 +1,15 @@
-import React from "react";
-import Button from "@mui/material/Button";
+import React, { useState } from "react";
+import {
+  Button,
+  ButtonGroup,
+  Container,
+  Grid,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@mui/material";
 
 function Header() {
   return (
@@ -21,23 +31,62 @@ function Nav() {
 }
 
 function Article() {
+  const [open, setOpen] = useState(false);
+
   return (
     <article>
       <h2>Welcome</h2>
-      Hello web!
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat
+      voluptatum nostrum veniam? Saepe itaque nemo nobis officia molestias
+      tenetur omnis sint enim expedita neque esse dignissimos, totam ut ipsum
+      molestiae. Lorem ipsum dolor sit amet consectetur adipisicing elit.
       <br />
-      <Button>Create</Button>
+      <ButtonGroup>
+        <Button
+          variant="outlined"
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          Create
+        </Button>
+        <Button variant="outlined">Update</Button>
+      </ButtonGroup>
+      <Button variant="outlined">Delete</Button>
+      <Dialog open={open}>
+        <DialogTitle>Create</DialogTitle>
+        <DialogContent>
+          <DialogContentText>Hello Create!!</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button variant="outlined">Create</Button>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              setOpen(false);
+            }}
+          >
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
     </article>
   );
 }
 
 function Mui() {
   return (
-    <div>
+    <Container fixed>
       <Header></Header>
-      <Nav></Nav>
-      <Article></Article>
-    </div>
+      <Grid container>
+        <Grid item xs={2}>
+          <Nav></Nav>
+        </Grid>
+        <Grid item xs={10}>
+          <Article></Article>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 
