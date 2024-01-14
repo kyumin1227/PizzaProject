@@ -1,6 +1,8 @@
 import { Routes, Route, Outlet } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import MuiPage from "./pages/MuiPage";
 import Nav from "./components/Nav";
+// import "./reset.css";
 
 function App() {
   const Layout = () => {
@@ -17,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />}></Route>
+          <Route path="/mui" element={<MuiPage />}></Route>
         </Route>
       </Routes>
     </>
