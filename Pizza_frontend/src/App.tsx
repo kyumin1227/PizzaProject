@@ -3,7 +3,9 @@ import HomePage from "./pages/HomePage";
 import MuiPage from "./pages/MuiPage";
 import LoginPage from "./pages/LoginPage";
 import Nav from "./components/Nav";
+import BottomNav from "./components/BottomNav";
 import "./reset.css";
+import { Paper } from "@mui/material";
 
 function App() {
   const Layout = () => {
@@ -11,6 +13,9 @@ function App() {
       <>
         <Nav />
         <Outlet />
+        <Paper sx={{ position: "fixed", bottom: 0 }}>
+          <BottomNav />
+        </Paper>
       </>
     );
   };
