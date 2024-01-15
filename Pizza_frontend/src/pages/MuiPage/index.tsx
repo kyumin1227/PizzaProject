@@ -76,7 +76,8 @@ function Article() {
 
 function Mui() {
   return (
-    <Container fixed>
+    <>
+      {/* <Container fixed> */}
       <Header></Header>
       <Grid container>
         <Grid item xs={2}>
@@ -86,7 +87,8 @@ function Mui() {
           <Article></Article>
         </Grid>
       </Grid>
-    </Container>
+      {/* </Container> */}
+    </>
   );
 }
 
