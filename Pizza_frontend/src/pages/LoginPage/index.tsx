@@ -29,13 +29,19 @@ const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleOnClickLogin = () => {
+  const handleOnClickLogin = async () => {
     if (id == "" || password == "") {
       setErrorMessage("id 또는 password를 입력해주세요");
       return;
     }
-    const res = postLogin(id, password);
-    console.log(res.data);
+    const res = await postLogin(id, password);
+    const { status } = res;
+
+    if (status == 200) {
+      const { accessToken, refreshToken } = res.data;
+      sessionStorage.setItem("accessToken", accessToken);
+      sessionStorage.setItem("refreshToken", refreshToken);
+    }
   };
 
   return (
