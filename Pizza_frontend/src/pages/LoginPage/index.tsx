@@ -12,8 +12,10 @@ import {
 import { useState } from "react";
 import { postLogin } from "../../api/login";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((prev) => !prev);
@@ -39,8 +41,11 @@ const Login = () => {
 
     if (status == 200) {
       const { accessToken, refreshToken } = res.data;
-      sessionStorage.setItem("accessToken", accessToken);
-      sessionStorage.setItem("refreshToken", refreshToken);
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
+      navigate("/");
+    } else if (status == 400) {
+      setErrorMessage("id 또는 password가 올바르지 않습니다.");
     }
   };
 
