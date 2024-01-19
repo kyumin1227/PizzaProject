@@ -18,8 +18,27 @@ import {
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { useSelector } from "react-redux";
 
 export default function ButtonAppBar() {
+  const userValue = useSelector((state) => {
+    return state.user;
+  });
+
+  console.log(userValue);
+
+  const loginOrUser = () => {
+    if (!userValue.isLogin) {
+      return (
+        <Button color="inherit" onClick={() => navigate("/login")}>
+          Login
+        </Button>
+      );
+    } else {
+      return "로그인 완료";
+    }
+  };
+
   const navigate = useNavigate();
 
   type Anchor = "left";
@@ -110,9 +129,7 @@ export default function ButtonAppBar() {
           >
             Home
           </Typography>
-          <Button color="inherit" onClick={() => navigate("/login")}>
-            Login
-          </Button>
+          {loginOrUser()}
         </Toolbar>
       </AppBar>
     </Box>

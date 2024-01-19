@@ -13,8 +13,10 @@ export const postLogin = async (id: string, password: string) => {
     id,
     password,
   };
-  const res = await api.post("/login", loginData);
-  if (res.data.status == 200) {
+  const res = await api.post("/api/login", loginData);
+
+  // 로그인 성공 시 토큰을 이용하여 유저 정보 받아옴
+  if (res.status == 200) {
     const { accessToken, refreshToken } = res.data;
     await getUser(accessToken);
   }
