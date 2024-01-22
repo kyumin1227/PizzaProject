@@ -2,6 +2,7 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function stringToColor(string: string) {
   let hash = 0;
@@ -33,12 +34,14 @@ function stringAvatar(name: string) {
 }
 
 export default function BackgroundLetterAvatars() {
-  const { firstName, lastName } = useSelector((state) => {
+  const { firstName, lastName, id } = useSelector((state) => {
     return state.user;
   });
   return (
-    <Stack direction="row" spacing={2}>
-      <Avatar {...stringAvatar(firstName + " " + lastName)} />
-    </Stack>
+    <Link to={"/user/" + id} style={{ textDecoration: "none" }}>
+      <Stack direction="row" spacing={2}>
+        <Avatar {...stringAvatar(firstName + " " + lastName)} />
+      </Stack>
+    </Link>
   );
 }

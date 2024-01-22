@@ -14,7 +14,7 @@ interface UserState {
 export const userSlice = createSlice({
   name: "user",
   initialState: {
-    id: null,
+    id: 3,
     email: null,
     firstName: "kyumin",
     lastName: "kim",
