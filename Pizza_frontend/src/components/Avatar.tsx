@@ -33,8 +33,12 @@ function stringAvatar(name: string) {
 }
 
 export default function BackgroundLetterAvatars() {
-  //   const userValue = useSelector((state) => {
-  //     return state.user;
-  //   });
-  return <Avatar {...stringAvatar("kyumin")} />;
+  const { firstName, lastName } = useSelector((state) => {
+    return state.user;
+  });
+  return (
+    <Stack direction="row" spacing={2}>
+      <Avatar {...stringAvatar(firstName + " " + lastName)} />
+    </Stack>
+  );
 }

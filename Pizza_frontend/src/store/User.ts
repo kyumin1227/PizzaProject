@@ -16,8 +16,8 @@ export const userSlice = createSlice({
   initialState: {
     id: null,
     email: null,
-    firstName: null,
-    lastName: null,
+    firstName: "kyumin",
+    lastName: "kim",
     isAdmin: null,
     nickName: null,
     isLogin: true,
