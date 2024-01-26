@@ -22,9 +22,12 @@ export const postLogin = async (id: string, password: string) => {
   // 로그인 성공 시 accessToken은 store에 저장, refreshToken은 cookie에 저장
   if (res.status == 200) {
     const { accessToken, refreshToken } = res.data;
-    store.dispatch(setAccessToken(accessToken));
+    // accessToken을 넘기기 위해 object 생성
+    const accessTokenData = {
+      accessToken,
+    };
+    store.dispatch(setAccessToken(accessTokenData));
     setRefreshToken(refreshToken);
-    console.log("토큰 설정 완료");
     return res;
   }
 };

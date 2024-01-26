@@ -16,6 +16,7 @@ const MainPage = () => {
 
   useEffect(() => {
     console.log("accessToken: " + accessToken);
+    console.log("isLogin: " + isLogin);
 
     const callGetUser = async (accessToken) => {
       await getUser(accessToken);

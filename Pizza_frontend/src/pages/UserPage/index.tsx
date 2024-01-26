@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import store from "../../store";
 import { clearUser } from "../../store/User";
 import { removeRefreshToken } from "../../store/Cookie";
@@ -9,10 +9,13 @@ const UserPage = () => {
   console.log(pathname);
   const userId = pathname.slice(6);
 
+  const navigate = useNavigate();
+
   const handleLogOut = () => {
     store.dispatch(clearUser());
     store.dispatch(deleteAccessToken());
     removeRefreshToken();
+    navigate("/");
     return;
   };
 
