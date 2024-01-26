@@ -42,9 +42,6 @@ const Login = () => {
     console.log(status);
 
     if (status == 200) {
-      const { accessToken, refreshToken } = res.data;
-      localStorage.setItem("accessToken", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
       navigate("/");
     } else if (status == 400) {
       setErrorMessage("id 또는 password가 올바르지 않습니다.");

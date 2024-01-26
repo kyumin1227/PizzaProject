@@ -14,10 +14,10 @@ interface UserState {
 export const userSlice = createSlice({
   name: "user",
   initialState: {
-    id: 3,
+    id: null,
     email: null,
-    firstName: "kyumin",
-    lastName: "kim",
+    firstName: null,
+    lastName: null,
     isAdmin: null,
     nickName: null,
     isLogin: false,
