@@ -1,20 +1,31 @@
 import { useEffect, useState } from "react";
 import { getUser } from "../../api/user";
+import store from "../../store";
+import { useSelector } from "react-redux";
 
 const MainPage = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
+
+  const { accessToken } = useSelector((state) => {
+    return state.token;
+  });
+  const { isLogin } = useSelector((state) => {
+    return state.user;
+  });
+
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
+    console.log("accessToken: " + accessToken);
+
     const callGetUser = async (accessToken) => {
-      const res = await getUser(accessToken);
-      console.log(res);
-      return res;
+      await getUser(accessToken);
+      return;
     };
-    if (accessToken) {
-      const res = callGetUser(accessToken);
+
+    if (accessToken != null && !isLogin) {
+      callGetUser(accessToken);
     }
-  }, []);
+  }, [accessToken, isLogin]);
   return <div>hello</div>;
 };
 
