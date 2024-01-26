@@ -7,13 +7,15 @@ import { setUser } from "../store/User";
  * @returns
  */
 export const getUser = async (accessToken: string) => {
-  const res = await api.get("/api/user", {
+  const res = await api.post("/api/user", {
     headers: {
       Authorization: accessToken,
     },
   });
   if (res.status == 200) {
     store.dispatch(setUser(res.data));
+    return;
+  } else {
     return;
   }
 };

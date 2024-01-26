@@ -6,9 +6,13 @@ const MainPage = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-      const res = getUser(accessToken);
+    const callGetUser = async (accessToken) => {
+      const res = await getUser(accessToken);
       console.log(res);
+      return res;
+    };
+    if (accessToken) {
+      const res = callGetUser(accessToken);
     }
   }, []);
   return <div>hello</div>;
