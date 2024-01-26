@@ -20,7 +20,7 @@ export const userSlice = createSlice({
     lastName: "kim",
     isAdmin: null,
     nickName: null,
-    isLogin: true,
+    isLogin: false,
   } as UserState,
   reducers: {
     setUser: (state, action) => {

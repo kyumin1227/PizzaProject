@@ -39,6 +39,8 @@ const Login = () => {
     const res = await postLogin(id, password);
     const { status } = res;
 
+    console.log(status);
+
     if (status == 200) {
       const { accessToken, refreshToken } = res.data;
       localStorage.setItem("accessToken", accessToken);

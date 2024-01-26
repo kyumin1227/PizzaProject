@@ -14,5 +14,6 @@ export const getUser = async (accessToken: string) => {
   });
   if (res.status == 200) {
     store.dispatch(setUser(res.data));
+    return;
   }
 };

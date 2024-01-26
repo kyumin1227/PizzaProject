@@ -1,6 +1,7 @@
 import axios from "axios";
 import api from ".";
 import { getUser } from "./user";
+import { Navigate } from "react-router-dom";
 
 /**
  * 로그인 요청
@@ -17,7 +18,9 @@ export const postLogin = async (id: string, password: string) => {
 
   // 로그인 성공 시 토큰을 이용하여 유저 정보 받아옴
   if (res.status == 200) {
-    const { accessToken, refreshToken } = res.data;
-    await getUser(accessToken);
+    return res;
+    // const { accessToken, refreshToken } = res.data;
+    // await getUser(accessToken);
+    // return res;
   }
 };
