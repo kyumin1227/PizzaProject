@@ -5,12 +5,19 @@ import FolderIcon from "@mui/icons-material/Folder";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { useNavigate } from "react-router-dom";
 
 export default function LabelBottomNavigation() {
   const [value, setValue] = React.useState("recents");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
+  };
+
+  const navigate = useNavigate();
+
+  const handleOrder = () => {
+    navigate("/order");
   };
 
   return (
@@ -21,9 +28,10 @@ export default function LabelBottomNavigation() {
         icon={<RestoreIcon />}
       />
       <BottomNavigationAction
-        label="Favorites"
-        value="favorites"
+        label="Order"
+        value="order"
         icon={<FavoriteIcon />}
+        onClick={handleOrder}
       />
       <BottomNavigationAction
         label="Nearby"

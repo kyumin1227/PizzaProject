@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import BottomNav from "./components/BottomNav";
 import "./reset.css";
 import { Paper } from "@mui/material";
+import OrderPage from "./pages/OrderPage";
 
 function App() {
   const Layout = () => {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/mui" element={<MuiPage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/user/:userId" element={<UserPage />}></Route>
+          <Route path="/order" element={<OrderPage />}></Route>
         </Route>
       </Routes>
     </>
