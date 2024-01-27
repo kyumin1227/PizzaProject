@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AvatarIcon from "./Avatar";
+import Avatar from "./AccountAvatar";
 import { useNavigate } from "react-router-dom";
 import {
   Divider,
@@ -28,6 +29,7 @@ export default function ButtonAppBar() {
 
   console.log(userValue);
 
+  // 로그인 여부에 따라 변경
   const loginOrUser = () => {
     if (!userValue.isLogin) {
       return (
@@ -36,7 +38,11 @@ export default function ButtonAppBar() {
         </Button>
       );
     } else {
-      return <AvatarIcon />;
+      return (
+        <>
+          <Avatar />
+        </>
+      );
     }
   };
 

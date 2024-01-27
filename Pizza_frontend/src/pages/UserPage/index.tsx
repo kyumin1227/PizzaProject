@@ -1,18 +1,8 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import store from "../../store";
-import { clearUser } from "../../store/User";
-import { removeRefreshToken } from "../../store/Cookie";
-import { deleteAccessToken } from "../../store/Auth";
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
 const UserPage = () => {
-  const { pathname } = useLocation();
-  const userId = pathname.slice(6);
-
-  const navigate = useNavigate();
-
   const userInfo = useSelector((state) => {
     return state.user;
   });
@@ -28,18 +18,9 @@ const UserPage = () => {
     userInfo.introduction
   );
 
-  const handleLogOut = () => {
-    store.dispatch(clearUser());
-    store.dispatch(deleteAccessToken());
-    removeRefreshToken();
-    navigate("/");
-    return;
-  };
-
   return (
     <>
       <Typography variant="h3">User Page</Typography>
-      <button onClick={handleLogOut}>logout</button>
       <Box sx={{ mx: "5%" }}>
         <TextField
           id="userId"
