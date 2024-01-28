@@ -28,6 +28,7 @@ export const postLogin = async (id: string, password: string) => {
     };
     store.dispatch(setAccessToken(accessTokenData));
     setRefreshToken(refreshToken);
+    getUser(id, accessToken);
     return res;
   }
 };

@@ -6,8 +6,8 @@ import { setUser } from "../store/User";
  * 유저 정보 받아오기
  * @returns
  */
-export const getUser = async (accessToken: string) => {
-  const res = await api.post("/api/user", {
+export const getUser = async (id: string, accessToken: string) => {
+  const res = await api.post(`/api/user/${id}`, {
     headers: {
       Authorization: accessToken,
     },
@@ -18,4 +18,12 @@ export const getUser = async (accessToken: string) => {
   } else {
     return;
   }
+};
+
+export const amendUser = async (accessToken: string) => {
+  const res = await api.post("/api/user", {
+    headers: {
+      Authorization: accessToken,
+    },
+  });
 };
