@@ -1,5 +1,6 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
+  Box,
   Button,
   FormControl,
   Grid,
@@ -12,7 +13,7 @@ import {
 import { useState } from "react";
 import { postLogin } from "../../api/login";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -90,6 +91,9 @@ const Login = () => {
             Login
           </Button>
           <ErrorBox>{errorMessage}</ErrorBox>
+          <Box sx={{ mt: 1 }}>
+            <Link to={"/register"}>Create account</Link>
+          </Box>
         </Grid>
         <Grid item xs></Grid>
       </Grid>
