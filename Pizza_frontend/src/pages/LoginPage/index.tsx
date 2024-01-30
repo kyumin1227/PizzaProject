@@ -14,6 +14,7 @@ import { useState } from "react";
 import { postLogin } from "../../api/login";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import { SHA256 } from "crypto-js";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -37,7 +38,9 @@ const Login = () => {
       setErrorMessage("id 또는 password를 입력해주세요");
       return;
     }
-    const res = await postLogin(id, password);
+    const key = { salt: import.meta.env.PASSWORD_KEY };
+    const passwordHash = SHA256(password, key).toString();
+    const res = await postLogin(id, passwordHash);
     const { status } = res;
 
     console.log(status);

@@ -1,6 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import { createUser } from "../../api/user";
+import { SHA256 } from "crypto-js";
 
 const RegisterPage = () => {
   const [id, setId] = useState("");
@@ -8,7 +9,11 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
 
   const handleCreateUser = async () => {
-    await createUser(id, password, email);
+    const key = {
+      salt: import.meta.env.PASSWORD_KEY,
+    };
+    const passwordHash = SHA256(password, key).toString();
+    await createUser(id, passwordHash, email);
   };
 
   return (
