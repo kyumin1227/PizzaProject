@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -41,15 +43,23 @@ public class UserController {
     }
 
     @PostMapping("/api/login")
-    public ResponseEntity<User> loginUser(@RequestBody UserLoginDto userLoginDto) {
+    public ResponseEntity<String> loginUser(@RequestBody UserLoginDto userLoginDto) {
 
-        User user = new User();
-        user.setUserId(userLoginDto.getId());
+        Optional<User> byUserId = Optional.ofNullable(userRepository.findByUserId(userLoginDto.getId()));
 
-        User byUserId = userRepository.findByUserId(userLoginDto.getId());
+        if(!byUserId.isPresent()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("존재하지 않는 id 입니다.");
+        }
 
-        System.out.println(byUserId.getEmail());
+        User user = byUserId.get();
 
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        System.out.println(userLoginDto.getPassword());
+        System.out.println(user.getPassword());
+
+        if(userLoginDto.getPassword().equals(user.getPassword())) {
+            return ResponseEntity.status(HttpStatus.OK).body(null);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("페스워드가 올바르지 않습니다.");
+        }
     }
 }
