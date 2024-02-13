@@ -31,6 +31,7 @@ export default function AccountMenu() {
     return state.user;
   });
   const firstName: string = userInfo.firstName;
+  const userId: String = userInfo.id;
 
   const navigate = useNavigate();
 
@@ -55,7 +56,7 @@ export default function AccountMenu() {
             aria-expanded={open ? "true" : undefined}
           >
             <Avatar sx={{ width: 32, height: 32 }}>
-              {firstName.slice(0, 1)}
+              {firstName ? firstName.slice(0, 1) : userId.slice(0, 1)}
             </Avatar>
           </IconButton>
         </Tooltip>
