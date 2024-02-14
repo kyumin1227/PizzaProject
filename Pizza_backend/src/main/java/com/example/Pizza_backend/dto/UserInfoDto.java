@@ -13,5 +13,6 @@ public class UserInfoDto {
     private boolean isAdmin;
     private String lastName;
     private String nickName;
+    private String introduction;
 
 }

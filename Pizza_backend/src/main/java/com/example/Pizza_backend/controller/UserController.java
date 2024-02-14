@@ -6,6 +6,7 @@ import com.example.Pizza_backend.dto.UserLoginDto;
 import com.example.Pizza_backend.entity.User;
 import com.example.Pizza_backend.repository.UserRepository;
 import com.example.Pizza_backend.service.UserService;
+import com.mysql.cj.x.protobuf.Mysqlx;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -72,5 +73,13 @@ public class UserController {
 
         return ResponseEntity.status(200).body(userInfo);
 
+    }
+
+    @PutMapping("/api/user/{userId}")
+    public ResponseEntity<UserInfoDto> amendUserInfo(@PathVariable("userId") String userId,@RequestBody UserInfoDto userInfo) {
+
+        UserInfoDto amendedUserInfo = userService.amendUserInfo(userId, userInfo);
+
+        return ResponseEntity.status(HttpStatus.OK).body(amendedUserInfo);
     }
 }
