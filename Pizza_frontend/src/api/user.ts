@@ -22,12 +22,16 @@ export const getUser = async (id: string, accessToken: string) => {
   }
 };
 
-export const amendUser = async (accessToken: string) => {
-  const res = await api.post("/api/user", {
-    headers: {
-      Authorization: accessToken,
+export const amendUser = async (data, accessToken: string) => {
+  const res = await api.put(
+    `/api/user/${data.userId}`,
+    {
+      headers: {
+        Authorization: accessToken,
+      },
     },
-  });
+    data
+  );
 };
 
 export const createUser = async (

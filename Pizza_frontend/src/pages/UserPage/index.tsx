@@ -1,22 +1,44 @@
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { amendUser } from "../../api/user";
 
 const UserPage = () => {
   const userInfo = useSelector((state) => {
     return state.user;
   });
 
-  const [amendUserId, setAmendUserId] = useState(userInfo.id);
-  const [amendUserFirstName, setAmendUserFirstName] = useState(
-    userInfo.firstName
+  const [amendUserId, setAmendUserId] = useState<string | undefined>(
+    userInfo.id
   );
-  const [amendUserLastName, setAmendUserLastName] = useState(userInfo.lastName);
-  const [amendUserNickName, setAmendUserNickName] = useState(userInfo.nickName);
-  const [amendUserEmail, setAmendUserEmail] = useState(userInfo.email);
-  const [amendUserIntroduction, setAmendUserIntroduction] = useState(
-    userInfo.introduction
+  const [amendUserFirstName, setAmendUserFirstName] = useState<
+    string | undefined
+  >(userInfo.firstName);
+  const [amendUserLastName, setAmendUserLastName] = useState<
+    string | undefined
+  >(userInfo.lastName);
+  const [amendUserNickName, setAmendUserNickName] = useState<
+    string | undefined
+  >(userInfo.nickName);
+  const [amendUserEmail, setAmendUserEmail] = useState<string | undefined>(
+    userInfo.email
   );
+  const [amendUserIntroduction, setAmendUserIntroduction] = useState<
+    string | undefined
+  >(userInfo.introduction);
+
+  const handleOnClickAmendUser = async () => {
+    const data = {
+      userId: amendUserId,
+      userFirstName: amendUserFirstName,
+      userLastName: amendUserLastName,
+      userNickname: amendUserNickName,
+      userEmail: amendUserEmail,
+      userIntroduction: amendUserIntroduction,
+    };
+
+    await amendUser(data, "1");
+  };
 
   return (
     <>
@@ -89,7 +111,9 @@ const UserPage = () => {
           }}
         />
         <Box display="flex" justifyContent="flex-end" sx={{ mt: 1 }}>
-          <Button variant="contained">Amend</Button>
+          <Button variant="contained" onClick={handleOnClickAmendUser}>
+            Amend
+          </Button>
         </Box>
       </Box>
     </>
