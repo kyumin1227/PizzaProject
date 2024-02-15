@@ -3,6 +3,7 @@ import { useState } from "react";
 import { createUser } from "../../api/user";
 import { SHA256 } from "crypto-js";
 import { isAxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const [id, setId] = useState("");
@@ -10,18 +11,23 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const navigate = useNavigate();
+
   const handleCreateUser = async () => {
     setErrorMessage("");
     const key = {
       salt: import.meta.env.PASSWORD_KEY,
     };
     const passwordHash = SHA256(password, key).toString();
-    try {
-      await createUser(id, passwordHash, email);
-    } catch (error) {
-      if (isAxiosError(error)) {
-        setErrorMessage(error.response?.data);
-      }
+    // try {
+    const data = await createUser(id, passwordHash, email);
+    // } catch (error) {
+    // if (isAxiosError(error)) {
+    // setErrorMessage(error.response?.data);
+    // }
+    // }
+    if (data.status == 200) {
+      navigate("/");
     }
   };
 

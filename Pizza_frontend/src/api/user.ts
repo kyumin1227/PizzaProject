@@ -47,6 +47,7 @@ export const createUser = async (
   });
   if (res.status == 200) {
     await postLogin(id, password);
+    return res;
   } else if (res.status == 400) {
     return res.data;
   }
