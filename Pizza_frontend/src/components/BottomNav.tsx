@@ -20,6 +20,10 @@ export default function LabelBottomNavigation() {
     navigate("/order");
   };
 
+  const handleStores = () => {
+    navigate("/stores");
+  };
+
   return (
     <BottomNavigation sx={{ width: 412 }} value={value} onChange={handleChange}>
       <BottomNavigationAction
@@ -37,6 +41,7 @@ export default function LabelBottomNavigation() {
         label="Nearby"
         value="nearby"
         icon={<LocationOnIcon />}
+        onClick={handleStores}
       />
       <BottomNavigationAction
         label="Folder"

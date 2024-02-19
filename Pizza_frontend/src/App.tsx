@@ -9,6 +9,7 @@ import "./reset.css";
 import { Paper } from "@mui/material";
 import OrderPage from "./pages/OrderPage";
 import RegisterPage from "./pages/RegisterPage";
+import StorePage from "./pages/StorePage";
 
 function App() {
   const Layout = () => {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/user/:userId" element={<UserPage />}></Route>
           <Route path="/order" element={<OrderPage />}></Route>
+          <Route path="/stores" element={<StorePage />}></Route>
         </Route>
       </Routes>
     </>
