@@ -1,7 +1,7 @@
 import axios from "axios";
 import api from ".";
 import { getUser } from "./user";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import store from "../store";
 import { setAccessToken } from "../store/Auth";
 import { setRefreshToken } from "../store/Cookie";
