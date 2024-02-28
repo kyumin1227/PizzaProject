@@ -7,12 +7,12 @@ const storePage = () => {
   return (
     <>
       <GoogleMap />
-      store
       {stores.map((item, index) => (
         <StoreInfo
           name={item.name}
           latitude={item.latitude}
           longitude={item.longitude}
+          url={item.url}
         ></StoreInfo>
       ))}
     </>

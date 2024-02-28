@@ -2,11 +2,13 @@
   {
     "name": "가게 A",
     "latitude": "37.12345",
-    "longitude": "127.54321"
+    "longitude": "127.54321",
+    "url": "store-a"
   },
   {
     "name": "가게 B",
     "latitude": "37.54321",
-    "longitude": "127.12345"
+    "longitude": "127.12345",
+    "url": "store-b"
   }
 ]
